@@ -65,7 +65,7 @@
 
     <div id="test">
       <img id="decoration" src="../edit/decoration.png"></img>
-      <img id="the-rock" src="celebs.jpeg"></img>
+      <img id="the-rock" src="hands.jpeg"></img>
       <canvas id="test-canvas"></canvas>
       <div id="loading-test-canvas">
         <div class="lds-spinner">
@@ -86,16 +86,14 @@
     </div>
 
     
-    <!-- Require the peer dependencies of face-detection. -->
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+<!-- Require the peer dependencies of hand-pose-detection. -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
 
-    <!-- You must explicitly require a TF.js backend if you're not using the TF.js union bundle. -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+<!-- You must explicitly require a TF.js backend if you're not using the TF.js union bundle. -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-detection"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/hand-pose-detection"></script>
     <script src="main.js" type="module"></script>
   </body>
 </html>

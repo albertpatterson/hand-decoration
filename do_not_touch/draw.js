@@ -1,5 +1,5 @@
-import { getBBox } from '../edit/get_bbox';
-import { drawFacePoints } from './util';
+import { getHandBBox } from '../edit/get_bbox';
+import { drawHandPoints } from './util';
 import { getPredictions } from './model';
 
 export function initiateVideoAndCanvas(video, canvas) {
@@ -57,16 +57,16 @@ export async function takepictures(
   const context = canvas.getContext('2d');
 
   const { height, width, scale } = getCanvasSize(video);
-  const faces = await getPredictions(video, model);
+  const hands = await getPredictions(video, model);
 
   context.drawImage(video, 0, 0, width, height);
-  for (const face of faces) {
-    drawOnFace(context, face, scale);
+  for (const hand of hands) {
+    drawOnHand(context, hand, scale);
   }
 
   if (markKeypoints) {
-    for (const face of faces) {
-      drawFacePoints(context, face);
+    for (const hand of hands) {
+      drawHandPoints(context, hand);
     }
   }
 
@@ -78,6 +78,16 @@ export async function takepictures(
 }
 
 const decoration = document.getElementById('decoration');
+
+function drawOnHand(context, hand, scale) {
+  if (!hand) {
+    return;
+  }
+
+  const bBox = getHandBBox(hand);
+
+  context.drawImage(decoration, bBox.x, bBox.y, bBox.width, bBox.height);
+}
 
 function drawOnFace(context, face, scale) {
   if (!face) {

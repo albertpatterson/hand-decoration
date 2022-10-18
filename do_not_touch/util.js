@@ -16,6 +16,15 @@ const pointNames = [
   'leftEarTragion',
 ];
 
+export function drawHandPoints(context, hand) {
+  if (!hand) {
+    return;
+  }
+  for (const keypoint of hand.keypoints) {
+    drawPoint(context, keypoint.x, keypoint.y);
+  }
+}
+
 export function drawFacePoints(context, face) {
   if (!face) {
     return;

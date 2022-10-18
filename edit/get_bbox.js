@@ -22,3 +22,22 @@ export function getBBox(face) {
 
   return { x, y, height, width };
 }
+
+export function getHandBBox(hand) {
+  let n = 0;
+  let xTot = 0;
+  let yTot = 0;
+  for (const keypoint of hand.keypoints) {
+    n += 1;
+    xTot += keypoint.x;
+    yTot += keypoint.y;
+  }
+
+  const size = 75;
+  const x = xTot / n - size / 2;
+  const y = yTot / n - size / 2;
+  const height = size;
+  const width = size;
+
+  return { x, y, height, width };
+}

@@ -5,17 +5,19 @@ export async function getModel() {
     return model;
   }
 
-  const factory = faceDetection.SupportedModels.MediaPipeFaceDetector;
+  const factory = handPoseDetection.SupportedModels.MediaPipeHands;
   const detectorConfig = {
     runtime: 'tfjs',
-    maxFaces: 10,
+    solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/hands',
+    modelType: 'full',
+    maxHands: 10,
   };
-  model = await faceDetection.createDetector(factory, detectorConfig);
+  model = await handPoseDetection.createDetector(factory, detectorConfig);
   return model;
 }
 
 export async function getPredictions(video, model) {
   const estimationConfig = { flipHorizontal: false };
-  const faces = await model.estimateFaces(video, estimationConfig);
-  return faces;
+  const hands = await model.estimateHands(video, estimationConfig);
+  return hands;
 }
